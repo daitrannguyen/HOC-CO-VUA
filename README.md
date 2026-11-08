@@ -6,6 +6,10 @@ Bài học cờ vua tương tác cho trẻ 6–11 tuổi.
 
 - [`co-vua-khai-cuoc.html`](co-vua-khai-cuoc.html): **3 nguyên tắc khai cuộc** (Chiếm giữa – Ra quân – Giấu Vua). Có thêm mục **Mẹo**: chiếm trung tâm, bẫy chiếu hết 2 nước, bẫy Légal và các mẹo khác. Mở trực tiếp bằng trình duyệt; cần Internet để tải chess.js.
 
+## Chương trình 16 bài
+
+Phần 1 Khai cuộc (Bài 1–4) · Phần 2 Chiến thuật (Bài 5–10) · Phần 3 Tàn cuộc (Bài 11–16). Đã có: **Bài 1, 2, 6, 7**. Các bài 2–16 dùng bộ dựng chung, xem `lessons/README.md`.
+
 ## Trang web / app
 
 Chạy tại **https://covua.dainguyen.net** (GitHub Pages, nhánh `main`, thư mục gốc).
