@@ -4,6 +4,7 @@
 export default {
   no: 7, part: 2, icon: '📌',
   title: 'Ghim',
+  nextLesson: 'bai-8.html',
   sub: 'Quân bị ghim – không dám nhúc nhích',
   sections: [
     {

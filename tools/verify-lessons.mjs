@@ -27,6 +27,8 @@ for (const f of readdirSync(root).filter(f => /^bai-\d+\.js$/.test(f)).sort()) {
       ck(`${id}: ${b.sans.length} nước hợp lệ`, ok);
       const last = b.sans.at(-1);
       if (ok && last.endsWith('#')) ck(`${id}: ${last} là chiếu hết`, g.isCheckmate());
+      if (ok && b.verify?.stalemate) ck(`${id}: kết thúc hòa pat`, g.isStalemate());
+      if (ok && b.verify?.promote) ck(`${id}: có phong cấp`, b.sans.some(x => x.includes('=')));
     }
     if (b.type === 'puzzle') {
       const g = new Chess(fen); let ok = true;
@@ -37,6 +39,8 @@ for (const f of readdirSync(root).filter(f => /^bai-\d+\.js$/.test(f)).sort()) {
       });
       if (b.solution.length) ck(`${id}: lời giải ${b.solution.join(' ')} hợp lệ`, ok);
       if (ok && b.solution.at(-1)?.endsWith('#')) ck(`${id}: kết thúc chiếu hết`, g.isCheckmate());
+      if (ok && b.anyMate) ck(`${id}: anyMate – lời giải kết thúc chiếu hết`, g.isCheckmate());
+      if (b.solution.length === 0 && !b.accept?.length) ck(`${id}: có lời giải hoặc đáp án`, false);
       for (const a of b.accept || []) {
         const t = new Chess(fen); const m = tryMove(t, a);
         ck(`${id}: đáp án ${a} hợp lệ`, sanOk(m, a), m?.san);
@@ -57,6 +61,15 @@ for (const f of readdirSync(root).filter(f => /^bai-\d+\.js$/.test(f)).sort()) {
         const ms = t.moves({ square: v.onlyFile.sq, verbose: true });
         ck(`${id}: quân ${v.onlyFile.sq} chỉ đi trên cột ${v.onlyFile.file} (${ms.length} nước)`, ms.length > 0 && ms.every(m => m.to[0] === v.onlyFile.file));
       }
+      if (v.free) {
+        const t = new Chess(fen); const m = t.move(b.solution[0]);
+        const back = t.moves({ verbose: true }).filter(r => r.to === m.to);
+        ck(`${id}: ${m.san} ăn quân miễn phí (đối thủ không ăn lại được)`, !!m.captured && back.length === 0, back.map(r => r.san).join(','));
+      }
+      if (v.stalemateMove) {
+        const t = new Chess(fen); t.move(v.stalemateMove);
+        ck(`${id}: ${v.stalemateMove} gây hòa pat (bẫy)`, t.isStalemate());
+      }
       if (v.line) {
         const t = new Chess(fen); b.solution.forEach(s => t.move(s));
         ck(`${id}: tiếp theo ${v.line.join(' ')} hợp lệ`, v.line.every(s => sanOk(tryMove(t, s), s)));
@@ -65,6 +78,7 @@ for (const f of readdirSync(root).filter(f => /^bai-\d+\.js$/.test(f)).sort()) {
     if (b.type === 'explore') {
       const t = new Chess(fen);
       for (const sq of b.verify?.zero || []) ck(`${id}: quân ${sq} không đi được`, t.get(sq) && t.moves({ square: sq }).length === 0);
+      if (b.verify?.stalemate) ck(`${id}: thế cờ là hòa pat`, t.isStalemate());
     }
   }
 }

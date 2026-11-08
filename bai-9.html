@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bài 9 · Học cờ vua</title>
+<meta name="theme-color" content="#6d5dfc">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&display=swap&subset=vietnamese" rel="stylesheet">
+<link rel="stylesheet" href="assets/lesson.css">
+</head>
+<body>
+<p style="padding:24px;text-align:center">Đang tải bài học…</p>
+<script type="module">
+try {
+  const [{ default: data }, { runLesson }] = await Promise.all([import('./lessons/bai-09.js'), import('./assets/lesson.js')]);
+  runLesson(data);
+} catch (e) {
+  document.body.innerHTML = '<p style="padding:24px;text-align:center">⚠️ Không tải được bài học. Con nhờ bố mẹ kiểm tra Internet rồi tải lại trang nhé. <a href="./">Về trang chủ</a></p>';
+  console.error(e);
+}
+</script>
+</body>
+</html>
