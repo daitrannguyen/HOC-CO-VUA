@@ -126,6 +126,12 @@ table.moves tr.curRow td.note{color:var(--ink);font-weight:800}
 nav.pager{position:fixed;left:0;right:0;bottom:0;display:flex;gap:10px;justify-content:center;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.92);backdrop-filter:blur(6px);box-shadow:0 -4px 16px rgba(0,0,0,.08);z-index:20}
 nav.pager .btn{flex:1;max-width:240px;min-height:52px}
 #err{display:none;margin:10px auto;max-width:1000px;padding:12px 16px;border-radius:14px;background:#fee2e2;border:3px solid var(--red)}
+.subtabs{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 14px}
+.subtabs button{min-height:48px;padding:6px 16px;border-radius:24px;border:3px solid var(--primary);background:#fff;color:var(--primary-d);font:inherit;font-weight:900;font-size:17px;cursor:pointer}
+.subtabs button.on{background:var(--primary);color:#fff}
+.tip-panel{display:none}.tip-panel.on{display:block;animation:fadeIn .3s ease}
+.tips{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.tips li{padding:12px 14px;border-radius:16px;background:#f0fdf4;border:3px solid #bbf7d0}
 .confetti{position:fixed;top:-20px;width:10px;height:16px;z-index:50;pointer-events:none;border-radius:2px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -268,6 +274,93 @@ nav.pager .btn{flex:1;max-width:240px;min-height:52px}
       <table class="moves" id="r5List"></table>
       <div class="row"><button class="btn green" id="dShow">🛡️ Cách phòng thủ</button></div>
     </div>
+  </div>
+</section>
+
+<!-- Mẹo -->
+<section data-title="Mẹo">
+  <h2>💡 Mẹo hay</h2>
+  <div class="subtabs" id="tipTabs">
+    <button class="on" data-p="tpCenter">🟨 Chiếm trung tâm</button>
+    <button data-p="tpTrap">🪤 Bẫy nước</button>
+    <button data-p="tpOther">✨ Mẹo khác</button>
+  </div>
+
+  <div class="tip-panel on" id="tpCenter">
+    <div class="grid2">
+      <div>
+        <div class="board" id="bt1"></div>
+        <div class="legend"><span><i style="background:rgba(250,204,21,.85)"></i>4 ô trung tâm</span><span><i style="background:var(--green)"></i>Ô quân Trắng kiểm soát</span></div>
+      </div>
+      <div>
+        <p>Bấm từng nút để xem quân Trắng <b>kiểm soát</b> được bao nhiêu ô trung tâm:</p>
+        <div class="row">
+          <button class="btn" data-c="0">Chỉ tốt e4</button>
+          <button class="btn" data-c="1">Tốt e4 + d4</button>
+          <button class="btn green" data-c="2">Thêm Mã c3, f3</button>
+        </div>
+        <div class="bubble" id="ctMsg">Bấm nút để xem nhé!</div>
+        <ul class="tips" style="margin-top:12px">
+          <li>🥇 <b>Mẹo 1:</b> Nước đầu tiên đi <b>tốt e</b> hoặc <b>tốt d</b> lên 2 ô.</li>
+          <li>🤝 <b>Mẹo 2:</b> Hai tốt <b>e4 + d4</b> đứng cạnh nhau là trung tâm mạnh.</li>
+          <li>🐴 <b>Mẹo 3:</b> Mã ra <b>f3, c3</b> (Đen: <b>f6, c6</b>) để nhìn vào giữa.</li>
+          <li>🚫 <b>Mẹo 4:</b> Đầu ván đừng đi tốt rìa (a, h) – không giúp gì cho trung tâm.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-panel" id="tpTrap">
+    <div class="subtabs" id="trapTabs">
+      <button class="on" data-p="trFool">Chiếu hết 2 nước</button>
+      <button data-p="trLegal">Bẫy Légal</button>
+      <button data-goto="5">Bẫy 4 nước ↗</button>
+    </div>
+    <div class="tip-panel on" id="trFool">
+      <div class="grid2">
+        <div>
+          <div class="board" id="bt2"></div>
+          <div class="row" style="justify-content:center">
+            <button class="btn ghost" id="t2Prev">◀ Lùi</button>
+            <button class="btn" id="t2Next">Tiếp ▶</button>
+            <button class="btn orange" id="t2Auto">⏯ Tự chạy</button>
+          </div>
+        </div>
+        <div>
+          <div class="bubble info" id="t2Msg">Ván cờ ngắn nhất: chỉ 2 nước là hết! Bấm “Tiếp”.</div>
+          <table class="moves" id="t2List"></table>
+          <div class="bubble good">🧠 <b>Bài học:</b> Đầu ván đừng đi tốt <b>f</b> và tốt <b>g</b> – Vua bị hở, rất dễ bị chiếu hết.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tip-panel" id="trLegal">
+      <div class="grid2">
+        <div>
+          <div class="board" id="bt3"></div>
+          <div class="row" style="justify-content:center">
+            <button class="btn ghost" id="t3Prev">◀ Lùi</button>
+            <button class="btn" id="t3Next">Tiếp ▶</button>
+            <button class="btn orange" id="t3Auto">⏯ Tự chạy</button>
+          </div>
+        </div>
+        <div>
+          <div class="bubble info" id="t3Msg">Bẫy nổi tiếng: Trắng cho Đen ăn Hậu… rồi chiếu hết! Bấm “Tiếp”.</div>
+          <table class="moves" id="t3List"></table>
+          <div class="bubble good">🧠 <b>Bài học:</b> Quân “cho không” có thể là <b>mồi bẫy</b>. Trước khi ăn, hãy hỏi: “Sau đó Vua mình có an toàn không?”</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-panel" id="tpOther">
+    <ul class="tips">
+      <li>👀 Trước mỗi nước, hỏi: <b>“Bạn vừa đi nước đó để làm gì? Có đe dọa quân nào của mình không?”</b></li>
+      <li>🛡️ Giữ ô <b>f7</b> (Đen) và <b>f2</b> (Trắng) cẩn thận – đầu ván ô này chỉ có Vua bảo vệ.</li>
+      <li>🚫 Đừng đi tốt <b>f</b>, <b>g</b> sớm – Vua dễ bị chiếu hết.</li>
+      <li>☝️ Đừng đi một quân 2 lần khi các quân khác chưa ra trận.</li>
+      <li>⚖️ Giá trị quân: Tốt <b>1</b> · Mã <b>3</b> · Tượng <b>3</b> · Xe <b>5</b> · Hậu <b>9</b>. Đừng đổi quân lớn lấy quân nhỏ.</li>
+      <li>🏁 Ra quân xong, nhập thành xong, rồi mới tấn công.</li>
+    </ul>
   </div>
 </section>
 
@@ -661,6 +754,72 @@ $('dBack').onclick = () => defenseMode(false);
 $('dG6').onclick = () => playDefense('g6', 'Tốt g6 đuổi Hậu Trắng khỏi h5, Hậu không còn ăn f7 được nữa.');
 $('dQe7').onclick = () => playDefense('Qe7', 'Hậu Đen đứng e7 bảo vệ ô f7. Nếu Trắng ăn f7, Hậu Đen ăn lại.');
 
+/* ================= Mẹo ================= */
+function subTabs(tabsId) {
+  const tabs = $(tabsId);
+  tabs.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.goto) return goStep(+b.dataset.goto);
+    [...tabs.children].forEach(x => { if (x.dataset.p) { x.classList.toggle('on', x === b); $(x.dataset.p).classList.toggle('on', x === b); } });
+  });
+}
+subTabs('tipTabs'); subTabs('trapTabs');
+
+const bt1 = createBoard($('bt1'));
+const CENTER_FENS = [
+  ['8/8/8/8/4P3/8/8/8 w - - 0 1', 'Chỉ tốt e4'],
+  ['8/8/8/8/3PP3/8/8/8 w - - 0 1', 'Tốt e4 + d4'],
+  ['8/8/8/8/3PP3/2N2N2/8/8 w - - 0 1', 'Tốt e4, d4 + Mã c3, f3'],
+];
+function showCenter(k) {
+  const [fen, name] = CENTER_FENS[k];
+  const g = new Chess(fen, { skipValidation: true });
+  const ctrl = [];
+  for (const f of FILES) for (let r = 1; r <= 8; r++) if (g.isAttacked(f + r, 'w')) ctrl.push(f + r);
+  const n = CENTER.filter(s => ctrl.includes(s)).length;
+  bt1.show(fen);
+  bt1.mark({ yellow: CENTER, green: ctrl });
+  setMsg('ctMsg', `<b>${name}</b>: quân Trắng kiểm soát <span class="big">${n}/4</span> ô trung tâm. ${n === 4 ? '🤩 Tuyệt vời!' : ''}`, n === 4 ? 'good' : 'info');
+}
+$('tpCenter').querySelectorAll('[data-c]').forEach(b => b.onclick = () => showCenter(+b.dataset.c));
+bt1.show('8/8/8/8/8/8/8/8 w - - 0 1'); bt1.mark({ yellow: CENTER });
+
+const FOOL = ['f3', 'e5', 'g4', 'Qh4#'];
+const bt2 = createBoard($('bt2'));
+const t2 = createReplay({
+  board: bt2, sans: FOOL, listEl: $('t2List'), prevBtn: $('t2Prev'), nextBtn: $('t2Next'), autoBtn: $('t2Auto'),
+  suffix: { 1: '?', 3: '??' },
+  onStep: i => {
+    const msg = ['Ván cờ ngắn nhất: chỉ 2 nước là hết! Bấm “Tiếp”.',
+      '😬 <b>1.f3?</b> – Trắng đi tốt f, mở đường chéo tới Vua.',
+      '<b>1…e5</b> – Đen mở đường cho Hậu.',
+      '😱 <b>2.g4??</b> – Đường chéo h4–e1 trống trơn!',
+      '💥 <b>2…Hh4#</b> – Chiếu hết! Vua Trắng không còn đường chạy.'][i];
+    setMsg('t2Msg', msg, i === 4 ? 'bad' : 'info');
+    if (i === 4) bt2.mark({ red: ['e1'] });
+  },
+});
+const LEGAL = ['e4', 'e5', 'Nf3', 'd6', 'Bc4', 'Bg4', 'Nc3', 'g6', 'Nxe5', 'Bxd1', 'Bxf7+', 'Ke7', 'Nd5#'];
+const bt3 = createBoard($('bt3'));
+const t3 = createReplay({
+  board: bt3, sans: LEGAL, listEl: $('t3List'), prevBtn: $('t3Prev'), nextBtn: $('t3Next'), autoBtn: $('t3Auto'),
+  suffix: { 8: '?', 9: '!', 10: '??' },
+  onStep: i => {
+    const msg = {
+      0: 'Bẫy nổi tiếng: Trắng cho Đen ăn Hậu… rồi chiếu hết! Bấm “Tiếp”.',
+      6: '<b>3…Tg4</b> – Tượng Đen ghim Mã f3 vào Hậu d1.',
+      8: '<b>4…g6?</b> – Đen chưa nhìn ra nguy hiểm.',
+      9: '😮 <b>5.Mxe5!</b> – Trắng bỏ mặc Hậu cho Đen ăn!',
+      10: '🍬 <b>5…Txd1??</b> – Đen tham ăn Hậu… đây chính là mồi bẫy!',
+      11: '<b>6.Txf7+</b> – Chiếu! Vua Đen chỉ còn ô e7.',
+      12: '<b>6…Ve7</b> – Vua Đen bị bắt phải đi.',
+      13: '💥 <b>7.Md5#</b> – Chiếu hết! Trắng mất Hậu nhưng vẫn chiếu hết bằng Mã và Tượng.',
+    }[i] || 'Hai bên ra quân, chiếm trung tâm.';
+    setMsg('t3Msg', msg, i === 13 || i === 10 ? 'bad' : 'info');
+    if (i === 13) bt3.mark({ red: ['e7'] });
+  },
+});
+
 /* ================= Mục 7: Bài tập ================= */
 function quiz(id, answers, explain, needAll = false) {
   const box = $(id), found = new Set();
@@ -770,7 +929,7 @@ sections.forEach((s, i) => {
   stepsEl.appendChild(b);
 });
 function goStep(i) {
-  r4.stop(); r5.stop();
+  r4.stop(); r5.stop(); t2.stop(); t3.stop();
   cur = Math.max(0, Math.min(sections.length - 1, i));
   sections.forEach((s, k) => s.classList.toggle('on', k === cur));
   [...stepsEl.children].forEach((b, k) => { b.classList.toggle('on', k === cur); if (k < cur) b.classList.add('done'); });
