@@ -3,6 +3,7 @@
 export default {
   no: 2, part: 1, icon: '🪤',
   title: 'Bẫy khai cuộc',
+  nextLesson: 'bai-3.html',
   sub: 'Nhận ra bẫy – và biết cách thoát',
   sections: [
     {

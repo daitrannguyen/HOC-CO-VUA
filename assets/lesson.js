@@ -225,7 +225,8 @@ function blockPuzzle(b) {
       board.mark({ last: [from, to], hint: [], red: [] });
       const ok = (sol[step] && clean(m.san) === clean(sol[step]))
         || (step === 0 && b.accept?.some(a => clean(a) === clean(m.san)))
-        || (step === 0 && b.defend && !mateInOne(g));
+        || (step === 0 && b.defend && !mateInOne(g))
+        || (b.anyMate && g.isCheckmate());
       if (!ok) return wrong(m);
       const alt = sol[step] && clean(m.san) !== clean(sol[step]);
       step++;
@@ -251,7 +252,8 @@ function blockPuzzle(b) {
   function wrong(m) {
     lock = true;
     const mate = mateInOne(g);
-    if (mate) setMsg(msg, `❌ Sau <b>${toVN(m.san)}</b>, đối thủ đi <b>${toVN(mate)}</b> chiếu hết!`, 'bad');
+    if (g.isStalemate()) setMsg(msg, `🤝 <b>${toVN(m.san)}</b> – Hòa pat! Đối thủ không bị chiếu nhưng hết nước đi. Đang thắng mà hòa thì tiếc lắm – thử lại nhé!`, 'bad');
+    else if (mate) setMsg(msg, `❌ Sau <b>${toVN(m.san)}</b>, đối thủ đi <b>${toVN(mate)}</b> chiếu hết!`, 'bad');
     else setMsg(msg, `🤔 <b>${toVN(m.san)}</b> chưa phải nước bài học muốn tìm. Thử lại nhé! ${vnText(b.wrong || '')}`, 'bad');
     setTimeout(() => { g.undo(); board.show(g.fen()); board.mark({ last: [] }); lock = false; }, 2200);
   }
