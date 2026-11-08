@@ -215,6 +215,33 @@ nav.pager .btn{flex:1;max-width:240px;min-height:52px}
       <div class="row"><button class="btn ghost" id="g2Reset">↺ Chơi lại</button></div>
     </div>
   </div>
+
+  <h3>📋 Lộ trình ra quân 10 nước</h3>
+  <p>Làm theo thứ tự này, đến nước 10 con sẽ có thế cờ đẹp: quân nhẹ đã ra hết, Vua an toàn, 2 Xe nối với nhau.</p>
+  <ul class="tips plan10">
+    <li>1️⃣ <b>Nước 1:</b> Tốt <b>e</b> hoặc <b>d</b> lên giữa.</li>
+    <li>2️⃣ <b>Nước 2–4:</b> Ra <b>Mã</b> trước (f3, c3), rồi <b>Tượng</b> (c4).</li>
+    <li>3️⃣ <b>Nước 5:</b> Tốt <b>d3</b> – giữ trung tâm, mở đường cho Tượng còn lại.</li>
+    <li>4️⃣ <b>Nước 6:</b> <b>Nhập thành</b> – giấu Vua.</li>
+    <li>5️⃣ <b>Nước 7:</b> Ra nốt <b>Tượng còn lại</b> (e3).</li>
+    <li>6️⃣ <b>Nước 8:</b> <b>Hậu</b> ra 1 ô (d2) – lúc này mới ra Hậu.</li>
+    <li>7️⃣ <b>Nước 9:</b> Giữ quân an toàn – chỉ đi lại một quân khi <b>có lý do</b>.</li>
+    <li>8️⃣ <b>Nước 10:</b> <b>Xe</b> ra cột giữa (e1) – 2 Xe đã nối với nhau.</li>
+  </ul>
+  <div class="grid2">
+    <div>
+      <div class="board" id="b2r"></div>
+      <div class="row" style="justify-content:center">
+        <button class="btn ghost" id="r2Prev">◀ Lùi</button>
+        <button class="btn" id="r2Next">Tiếp ▶</button>
+        <button class="btn orange" id="r2Auto">⏯ Tự chạy</button>
+      </div>
+    </div>
+    <div>
+      <div class="bubble info" id="r2Msg">Bấm “Tiếp” để xem từng nước của ván mẫu 10 nước.</div>
+      <table class="moves" id="r2List"></table>
+    </div>
+  </div>
 </section>
 
 <!-- 4. Nguyên tắc 3 -->
@@ -685,6 +712,42 @@ function resetG2() {
 $('g2Reset').onclick = resetG2;
 resetG2();
 
+/* ================= Mục 3b: Lộ trình ra quân 10 nước ================= */
+const DEV10 = ['e4', 'e5', 'Nf3', 'Nc6', 'Bc4', 'Bc5', 'Nc3', 'Nf6', 'd3', 'd6', 'O-O', 'O-O', 'Be3', 'Bb6', 'Qd2', 'Be6', 'Bb3', 'Qd7', 'Rae1', 'Rae8'];
+const DEV10_NOTES = [
+  ['Chiếm giữa', 1], ['Ra Mã', 2], ['Ra Tượng', 2], ['Ra Mã thứ 2', 2], ['Tốt d giữ e4/e5', 1],
+  ['Nhập thành', 3], ['Tượng còn lại ra', 2], ['Hậu ra 1 ô', 2], ['Giữ Tượng an toàn', 2], ['Xe ra giữa – nối Xe', 2],
+];
+const DEV10_MSG = [
+  'Bấm “Tiếp” để xem từng nước của ván mẫu 10 nước.',
+  '<b>1.e4</b> – Tốt e chiếm trung tâm, mở đường cho Tượng f1 và Hậu.',
+  '<b>1…e5</b> – Đen cũng chiếm trung tâm.',
+  '<b>2.Mf3</b> – Mã ra trước, tấn công tốt e5.',
+  '<b>2…Mc6</b> – Mã Đen ra và bảo vệ e5.',
+  '<b>3.Tc4</b> – Tượng ra, nhắm vào ô f7.',
+  '<b>3…Tc5</b> – Tượng Đen ra, nhắm vào ô f2.',
+  '<b>4.Mc3</b> – Mã thứ 2 ra. Trắng đã có 2 Mã + 1 Tượng ra trận!',
+  '<b>4…Mf6</b> – Đen cũng ra đủ 2 Mã.',
+  '<b>5.d3</b> – Tốt d bảo vệ e4 và mở đường cho Tượng c1.',
+  '<b>5…d6</b> – Đen làm giống vậy: giữ e5, mở đường Tượng c8.',
+  '<b>6.O-O</b> – Trắng nhập thành: Vua đã an toàn.',
+  '<b>6…O-O</b> – Đen cũng nhập thành.',
+  '<b>7.Te3</b> – Tượng cuối cùng của Trắng ra trận.',
+  '<b>7…Tb6</b> – Tượng Đen lùi để không bị đổi làm tốt chồng. Đi lại <b>có lý do</b>.',
+  '<b>8.Hd2</b> – Quân nhẹ đã ra hết, giờ mới ra Hậu – chỉ 1 ô, an toàn.',
+  '<b>8…Te6</b> – Tượng cuối của Đen ra, nhắm vào Tượng c4.',
+  '<b>9.Tb3</b> – Tượng c4 bị dọa đổi, Trắng lùi về b3 để giữ Tượng. Lại là đi lại <b>có lý do</b>.',
+  '<b>9…Hd7</b> – Hậu Đen ra 1 ô, 2 Xe Đen nối với nhau.',
+  '<b>10.Xae1</b> – Xe ra cột giữa. Trắng hoàn thành ra quân!',
+  '🏁 <b>10…Xae8</b> – Cả hai bên: 2 Mã, 2 Tượng đã ra, Vua đã nhập thành, Hậu ra 1 ô, Xe ở cột giữa. Đây là ra quân chuẩn!',
+];
+const r2 = createReplay({
+  board: createBoard($('b2r')), sans: DEV10, listEl: $('r2List'),
+  prevBtn: $('r2Prev'), nextBtn: $('r2Next'), autoBtn: $('r2Auto'),
+  notes: DEV10_NOTES.map(([t, p]) => `${t}<span class="tag">NT${p}</span>`),
+  onStep: i => setMsg('r2Msg', DEV10_MSG[i], i === 20 ? 'good' : 'info'),
+});
+
 /* ================= Mục 4: Nhập thành ================= */
 const CASTLE_SANS = ['e4', 'e5', 'Nf3', 'Nc6', 'Bc4', 'Bc5'];
 const b3 = createBoard($('b3'));
@@ -943,7 +1006,7 @@ sections.forEach((s, i) => {
   stepsEl.appendChild(b);
 });
 function goStep(i) {
-  r4.stop(); r5.stop(); t2.stop(); t3.stop();
+  r2.stop(); r4.stop(); r5.stop(); t2.stop(); t3.stop();
   cur = Math.max(0, Math.min(sections.length - 1, i));
   sections.forEach((s, k) => s.classList.toggle('on', k === cur));
   [...stepsEl.children].forEach((b, k) => { b.classList.toggle('on', k === cur); if (k < cur) b.classList.add('done'); });
