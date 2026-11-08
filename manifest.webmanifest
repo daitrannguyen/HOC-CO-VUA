@@ -1,0 +1,17 @@
+{
+  "name": "Học cờ vua cho bé",
+  "short_name": "Học cờ vua",
+  "description": "Bài học cờ vua tương tác cho trẻ 6–11 tuổi.",
+  "lang": "vi",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#e0f2fe",
+  "theme_color": "#6d5dfc",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

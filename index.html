@@ -5,32 +5,117 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Học cờ vua cho bé</title>
 <meta name="description" content="Bài học cờ vua tương tác cho trẻ 6–11 tuổi.">
+<meta name="theme-color" content="#6d5dfc">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Học cờ vua">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&display=swap&subset=vietnamese" rel="stylesheet">
 <style>
-  *{box-sizing:border-box}
-  body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-       background:linear-gradient(160deg,#eef2ff,#fef9c3);color:#1f2937;display:flex;flex-direction:column;align-items:center;padding:40px 16px}
-  h1{font-size:2rem;margin:0 0 6px;color:#4338ca}
-  p.sub{margin:0 0 28px;color:#6b7280}
-  .grid{display:grid;gap:16px;width:100%;max-width:720px}
-  a.card{display:flex;gap:16px;align-items:center;background:#fff;border-radius:18px;padding:18px 20px;
-         text-decoration:none;color:inherit;box-shadow:0 6px 20px rgba(67,56,202,.12);transition:transform .15s}
-  a.card:hover{transform:translateY(-3px)}
-  .icon{font-size:2.6rem;line-height:1}
-  .card h2{margin:0 0 4px;font-size:1.15rem;color:#111827}
-  .card span{color:#6b7280;font-size:.95rem}
+:root{--violet:#6d5dfc;--orange:#ff7a59;--green:#22c55e;--ink:#1e293b;--muted:#64748b}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-weight:600;color:var(--ink);
+     background:linear-gradient(160deg,#e0f2fe,#fef3c7);background-color:#e0f2fe;padding:0 16px 40px}
+.wrap{max-width:760px;margin:0 auto}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 0}
+.brand{font-weight:900;font-size:20px;color:var(--violet);text-decoration:none}
+#install{display:none;min-height:44px;padding:0 16px;border:none;border-radius:22px;background:var(--orange);color:#fff;font:inherit;font-weight:900;font-size:16px;cursor:pointer}
+header{text-align:center;padding:10px 0 18px}
+h1{font-size:clamp(28px,7vw,40px);margin:0;font-weight:900;color:var(--violet)}
+h1 span{color:var(--orange)}
+.sub{margin:6px 0 0;color:var(--muted);font-size:18px}
+h2.group{font-size:20px;font-weight:900;margin:26px 0 10px;color:var(--ink)}
+.card{display:block;background:#fff;border-radius:22px;padding:18px;box-shadow:0 8px 24px rgba(30,41,59,.10);text-decoration:none;color:inherit}
+a.card:hover{transform:translateY(-2px)}
+.card-head{display:flex;gap:14px;align-items:center}
+.icon{font-size:44px;line-height:1;flex:0 0 auto;font-family:"Segoe UI Symbol","Noto Sans Symbols 2","DejaVu Sans",sans-serif}
+.card h3{margin:0;font-size:21px;font-weight:900}
+.card p{margin:2px 0 0;color:var(--muted);font-size:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chips a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:22px;background:#f1f5ff;color:var(--violet);font-weight:800;text-decoration:none;font-size:16px}
+.chips a:hover{background:#e0e7ff}
+.chips a.go{background:var(--violet);color:#fff}
+.grid{display:grid;gap:12px}
+@media (min-width:640px){.grid.two{grid-template-columns:1fr 1fr}}
+.soon{opacity:.6;border:3px dashed #cbd5e1;box-shadow:none;background:rgba(255,255,255,.6)}
+.tip{margin-top:28px;padding:14px 16px;border-radius:18px;background:#ede9fe;color:#4c1d95;font-size:16px}
 </style>
 </head>
 <body>
-  <h1>♞ Học cờ vua</h1>
-  <p class="sub">Bài học tương tác cho trẻ 6–11 tuổi</p>
-  <div class="grid">
-    <a class="card" href="co-vua-khai-cuoc.html">
+<div class="wrap">
+  <nav class="topbar">
+    <a class="brand" href="./">♞ Học cờ vua</a>
+    <button id="install">📲 Cài app</button>
+  </nav>
+
+  <header>
+    <h1>Học cờ vua <span>cho bé</span></h1>
+    <p class="sub">Bài học tương tác cho trẻ 6–11 tuổi</p>
+  </header>
+
+  <h2 class="group">📘 Bài học</h2>
+  <div class="card">
+    <a class="card-head" href="co-vua-khai-cuoc.html#mo-dau" style="text-decoration:none;color:inherit">
       <div class="icon">♙</div>
       <div>
-        <h2>Bài 1 · 3 nguyên tắc khai cuộc</h2>
-        <span>Chiếm giữa – Ra quân – Giấu Vua</span>
+        <h3>Bài 1 · 3 nguyên tắc khai cuộc</h3>
+        <p>Chiếm giữa – Ra quân – Giấu Vua</p>
       </div>
     </a>
+    <div class="chips">
+      <a class="go" href="co-vua-khai-cuoc.html#mo-dau">▶ Bắt đầu</a>
+      <a href="co-vua-khai-cuoc.html#chiem-giua">1. Chiếm giữa</a>
+      <a href="co-vua-khai-cuoc.html#ra-quan">2. Ra quân</a>
+      <a href="co-vua-khai-cuoc.html#giau-vua">3. Giấu Vua</a>
+      <a href="co-vua-khai-cuoc.html#van-mau">📖 Ván mẫu</a>
+      <a href="co-vua-khai-cuoc.html#bay-4-nuoc">🪤 Bẫy 4 nước</a>
+    </div>
   </div>
+
+  <h2 class="group">✏️ Luyện tập</h2>
+  <div class="grid two">
+    <a class="card" href="co-vua-khai-cuoc.html#bai-tap">
+      <div class="card-head"><div class="icon">✏️</div><div><h3>Bài tập</h3><p>4 câu hỏi, có kéo quân trên bàn cờ</p></div></div>
+    </a>
+    <a class="card" href="co-vua-khai-cuoc.html#tu-danh-gia">
+      <div class="card-head"><div class="icon">⭐</div><div><h3>Tự đánh giá</h3><p>Tick sau mỗi ván con chơi</p></div></div>
+    </a>
+  </div>
+
+  <h2 class="group">💡 Mẹo hay</h2>
+  <div class="card">
+    <a class="card-head" href="co-vua-khai-cuoc.html#meo" style="text-decoration:none;color:inherit">
+      <div class="icon">💡</div>
+      <div><h3>Mẹo cờ vua</h3><p>Đọc thêm sau khi học xong Bài 1</p></div>
+    </a>
+    <div class="chips">
+      <a href="co-vua-khai-cuoc.html#meo-trung-tam">🟨 Chiếm trung tâm</a>
+      <a href="co-vua-khai-cuoc.html#meo-bay">🪤 Bẫy nước</a>
+      <a href="co-vua-khai-cuoc.html#meo-khac">✨ Mẹo khác</a>
+    </div>
+  </div>
+
+  <h2 class="group">🔜 Sắp có</h2>
+  <div class="grid two">
+    <div class="card soon"><div class="card-head"><div class="icon">♘</div><div><h3>Bài 2</h3><p>Sắp ra mắt</p></div></div></div>
+    <div class="card soon"><div class="card-head"><div class="icon">♖</div><div><h3>Bài 3</h3><p>Sắp ra mắt</p></div></div></div>
+  </div>
+
+  <div class="tip" id="iosTip" style="display:none">📲 Trên iPhone/iPad: bấm nút <b>Chia sẻ</b> rồi chọn <b>“Thêm vào MH chính”</b> để cài như app.</div>
+</div>
+<script>
+// Cài app (PWA)
+let deferred = null;
+const btn = document.getElementById('install');
+addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferred = e; btn.style.display = 'inline-block'; });
+btn.onclick = async () => { if (!deferred) return; deferred.prompt(); await deferred.userChoice; deferred = null; btn.style.display = 'none'; };
+addEventListener('appinstalled', () => { btn.style.display = 'none'; });
+const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+if (/iphone|ipad|ipod/i.test(navigator.userAgent) && !standalone) document.getElementById('iosTip').style.display = 'block';
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {});
+</script>
 </body>
 </html>

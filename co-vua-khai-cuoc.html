@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>3 nguyên tắc khai cuộc</title>
+<meta name="theme-color" content="#6d5dfc">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Học cờ vua">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&display=swap&subset=vietnamese" rel="stylesheet">
 <style>
@@ -24,6 +31,8 @@ body{
 header{padding:14px 16px 6px;text-align:center}
 header h1{margin:0;font-size:clamp(22px,5.5vw,34px);font-weight:900;color:var(--violet);letter-spacing:.2px}
 header h1 span{color:var(--primary)}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:8px;max-width:1000px;margin:0 auto;padding:10px 12px 0}
+.topbar a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:22px;background:#fff;color:var(--violet);font-weight:900;text-decoration:none;font-size:16px;box-shadow:0 2px 0 rgba(0,0,0,.08)}
 .steps{display:flex;gap:6px;overflow-x:auto;padding:10px 16px 8px;scrollbar-width:none;justify-content:flex-start;max-width:1000px;margin:0 auto}
 .steps::-webkit-scrollbar{display:none}
 .steps button{flex:0 0 auto;min-width:44px;min-height:44px;border-radius:22px;border:3px solid #fff;background:#fff;color:var(--muted);font:inherit;font-weight:800;font-size:15px;padding:0 12px;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.08)}
@@ -137,6 +146,7 @@ nav.pager .btn{flex:1;max-width:240px;min-height:52px}
 </style>
 </head>
 <body>
+<nav class="topbar"><a href="./">🏠 Trang chủ</a><a href="#meo" id="toMeo">💡 Mẹo</a></nav>
 <header>
   <h1>♞ Cờ vua: <span>3 nguyên tắc khai cuộc</span></h1>
 </header>
@@ -145,7 +155,7 @@ nav.pager .btn{flex:1;max-width:240px;min-height:52px}
 
 <main>
 <!-- 1. Mở đầu -->
-<section data-title="Mở đầu">
+<section data-title="Mở đầu" data-slug="mo-dau">
   <h2>👋 Chào nhà vô địch nhí!</h2>
   <p>Đầu ván cờ gọi là <b>khai cuộc</b>. Hôm nay con học câu thần chú giúp mở đầu ván cờ thật hay:</p>
   <div class="mantra"><b>Chiếm giữa</b> – <b>Ra quân</b> – <b>Giấu Vua</b></div>
@@ -160,7 +170,7 @@ nav.pager .btn{flex:1;max-width:240px;min-height:52px}
 </section>
 
 <!-- 2. Nguyên tắc 1 -->
-<section data-title="Chiếm giữa">
+<section data-title="Chiếm giữa" data-slug="chiem-giua">
   <h2><span class="num">1</span>Chiếm trung tâm</h2>
   <div class="grid2">
     <div>
@@ -187,7 +197,7 @@ nav.pager .btn{flex:1;max-width:240px;min-height:52px}
 </section>
 
 <!-- 3. Nguyên tắc 2 -->
-<section data-title="Ra quân">
+<section data-title="Ra quân" data-slug="ra-quan">
   <h2><span class="num">2</span>Ra quân nhanh</h2>
   <div class="grid2">
     <div>
@@ -208,7 +218,7 @@ nav.pager .btn{flex:1;max-width:240px;min-height:52px}
 </section>
 
 <!-- 4. Nguyên tắc 3 -->
-<section data-title="Giấu Vua">
+<section data-title="Giấu Vua" data-slug="giau-vua">
   <h2><span class="num">3</span>Nhập thành sớm</h2>
   <div class="grid2">
     <div>
@@ -234,7 +244,7 @@ nav.pager .btn{flex:1;max-width:240px;min-height:52px}
 </section>
 
 <!-- 5. Ván mẫu -->
-<section data-title="Ván mẫu">
+<section data-title="Ván mẫu" data-slug="van-mau">
   <h2>📖 Ván mẫu – Khai cuộc Ý</h2>
   <div class="grid2">
     <div>
@@ -253,7 +263,7 @@ nav.pager .btn{flex:1;max-width:240px;min-height:52px}
 </section>
 
 <!-- 6. Bẫy -->
-<section data-title="Bẫy 4 nước">
+<section data-title="Bẫy 4 nước" data-slug="bay-4-nuoc">
   <h2>🪤 Bẫy chiếu hết 4 nước</h2>
   <div class="grid2">
     <div>
@@ -277,13 +287,70 @@ nav.pager .btn{flex:1;max-width:240px;min-height:52px}
   </div>
 </section>
 
+<!-- 7. Bài tập -->
+<section data-title="Bài tập" data-slug="bai-tap">
+  <h2>✏️ Bài tập</h2>
+  <div class="quiz" id="q1">
+    <h3>Câu 1. Nước đầu tiên nào đúng nguyên tắc? <small>(có 2 đáp án đúng)</small></h3>
+    <div class="opts">
+      <button class="opt" data-a="e4">1.e4</button>
+      <button class="opt" data-a="h4">1.h4</button>
+      <button class="opt" data-a="Nf3">1.Mf3</button>
+      <button class="opt" data-a="Na3">1.Ma3</button>
+    </div>
+    <div class="bubble" id="q1Msg">Bấm chọn đáp án.</div>
+  </div>
+  <div class="quiz" id="q2">
+    <h3>Câu 2. Mã g1 nên đi f3 hay h3?</h3>
+    <div class="opts">
+      <button class="opt" data-a="f3">Mf3</button>
+      <button class="opt" data-a="h3">Mh3</button>
+    </div>
+    <div class="bubble" id="q2Msg">Bấm chọn đáp án.</div>
+  </div>
+  <div class="quiz" id="q3">
+    <h3>Câu 3. Sau 1.e4 e5 2.Mf3 Mc6 3.Tc4 Tc5, Trắng nhập thành được chưa?</h3>
+    <div class="grid2">
+      <div class="board" id="bq3"></div>
+      <div>
+        <div class="opts">
+          <button class="opt" data-a="yes">Được rồi (O-O)</button>
+          <button class="opt" data-a="no">Chưa được</button>
+        </div>
+        <div class="bubble" id="q3Msg">Nhìn bàn cờ rồi bấm chọn nhé.</div>
+      </div>
+    </div>
+  </div>
+  <div class="quiz" id="q4">
+    <h3>Câu 4. Sau 1.e4 e5 2.Hh5 Mc6 3.Tc4, Đen đi gì để không bị chiếu hết?</h3>
+    <div class="grid2">
+      <div class="board interactive" id="bq4"></div>
+      <div>
+        <p>Con <b>kéo</b> hoặc <b>bấm</b> một quân Đen, rồi bấm vào ô muốn đi (chấm xanh).</p>
+        <div class="bubble" id="q4Msg">Đến lượt Đen. Con đi nước nào?</div>
+        <div class="row"><button class="btn ghost" id="q4Reset">↺ Làm lại</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Phiếu tự đánh giá -->
+<section data-title="Tự đánh giá" data-slug="tu-danh-gia">
+  <h2>⭐ Phiếu tự đánh giá</h2>
+  <p>Sau mỗi ván con chơi, hãy tick vào những điều con đã làm được:</p>
+  <div id="checks"></div>
+  <div class="score" id="score">0/5 ⭐</div>
+  <div class="row" style="justify-content:center"><button class="btn orange" id="newGame">🔄 Ván mới</button></div>
+  <div class="bubble info">Nhớ câu thần chú: <b>Chiếm giữa – Ra quân – Giấu Vua</b>! 🏆</div>
+</section>
+
 <!-- Mẹo -->
-<section data-title="Mẹo">
+<section data-title="Mẹo" data-slug="meo">
   <h2>💡 Mẹo hay</h2>
   <div class="subtabs" id="tipTabs">
-    <button class="on" data-p="tpCenter">🟨 Chiếm trung tâm</button>
-    <button data-p="tpTrap">🪤 Bẫy nước</button>
-    <button data-p="tpOther">✨ Mẹo khác</button>
+    <button class="on" data-p="tpCenter" data-slug="meo-trung-tam">🟨 Chiếm trung tâm</button>
+    <button data-p="tpTrap" data-slug="meo-bay">🪤 Bẫy nước</button>
+    <button data-p="tpOther" data-slug="meo-khac">✨ Mẹo khác</button>
   </div>
 
   <div class="tip-panel on" id="tpCenter">
@@ -362,63 +429,6 @@ nav.pager .btn{flex:1;max-width:240px;min-height:52px}
       <li>🏁 Ra quân xong, nhập thành xong, rồi mới tấn công.</li>
     </ul>
   </div>
-</section>
-
-<!-- 7. Bài tập -->
-<section data-title="Bài tập">
-  <h2>✏️ Bài tập</h2>
-  <div class="quiz" id="q1">
-    <h3>Câu 1. Nước đầu tiên nào đúng nguyên tắc? <small>(có 2 đáp án đúng)</small></h3>
-    <div class="opts">
-      <button class="opt" data-a="e4">1.e4</button>
-      <button class="opt" data-a="h4">1.h4</button>
-      <button class="opt" data-a="Nf3">1.Mf3</button>
-      <button class="opt" data-a="Na3">1.Ma3</button>
-    </div>
-    <div class="bubble" id="q1Msg">Bấm chọn đáp án.</div>
-  </div>
-  <div class="quiz" id="q2">
-    <h3>Câu 2. Mã g1 nên đi f3 hay h3?</h3>
-    <div class="opts">
-      <button class="opt" data-a="f3">Mf3</button>
-      <button class="opt" data-a="h3">Mh3</button>
-    </div>
-    <div class="bubble" id="q2Msg">Bấm chọn đáp án.</div>
-  </div>
-  <div class="quiz" id="q3">
-    <h3>Câu 3. Sau 1.e4 e5 2.Mf3 Mc6 3.Tc4 Tc5, Trắng nhập thành được chưa?</h3>
-    <div class="grid2">
-      <div class="board" id="bq3"></div>
-      <div>
-        <div class="opts">
-          <button class="opt" data-a="yes">Được rồi (O-O)</button>
-          <button class="opt" data-a="no">Chưa được</button>
-        </div>
-        <div class="bubble" id="q3Msg">Nhìn bàn cờ rồi bấm chọn nhé.</div>
-      </div>
-    </div>
-  </div>
-  <div class="quiz" id="q4">
-    <h3>Câu 4. Sau 1.e4 e5 2.Hh5 Mc6 3.Tc4, Đen đi gì để không bị chiếu hết?</h3>
-    <div class="grid2">
-      <div class="board interactive" id="bq4"></div>
-      <div>
-        <p>Con <b>kéo</b> hoặc <b>bấm</b> một quân Đen, rồi bấm vào ô muốn đi (chấm xanh).</p>
-        <div class="bubble" id="q4Msg">Đến lượt Đen. Con đi nước nào?</div>
-        <div class="row"><button class="btn ghost" id="q4Reset">↺ Làm lại</button></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 8. Phiếu tự đánh giá -->
-<section data-title="Tự đánh giá">
-  <h2>⭐ Phiếu tự đánh giá</h2>
-  <p>Sau mỗi ván con chơi, hãy tick vào những điều con đã làm được:</p>
-  <div id="checks"></div>
-  <div class="score" id="score">0/5 ⭐</div>
-  <div class="row" style="justify-content:center"><button class="btn orange" id="newGame">🔄 Ván mới</button></div>
-  <div class="bubble info">Nhớ câu thần chú: <b>Chiếm giữa – Ra quân – Giấu Vua</b>! 🏆</div>
 </section>
 </main>
 
@@ -755,12 +765,16 @@ $('dG6').onclick = () => playDefense('g6', 'Tốt g6 đuổi Hậu Trắng khỏ
 $('dQe7').onclick = () => playDefense('Qe7', 'Hậu Đen đứng e7 bảo vệ ô f7. Nếu Trắng ăn f7, Hậu Đen ăn lại.');
 
 /* ================= Mẹo ================= */
+function pickTab(tabs, b) {
+  [...tabs.children].forEach(x => { if (x.dataset.p) { x.classList.toggle('on', x === b); $(x.dataset.p).classList.toggle('on', x === b); } });
+}
 function subTabs(tabsId) {
   const tabs = $(tabsId);
   tabs.addEventListener('click', e => {
     const b = e.target.closest('button'); if (!b) return;
     if (b.dataset.goto) return goStep(+b.dataset.goto);
-    [...tabs.children].forEach(x => { if (x.dataset.p) { x.classList.toggle('on', x === b); $(x.dataset.p).classList.toggle('on', x === b); } });
+    pickTab(tabs, b);
+    if (b.dataset.slug) history.replaceState(null, '', '#' + b.dataset.slug);
   });
 }
 subTabs('tipTabs'); subTabs('trapTabs');
@@ -937,11 +951,26 @@ function goStep(i) {
   $('prev').disabled = cur === 0;
   $('next').textContent = cur === sections.length - 1 ? '🏁 Về đầu' : 'Tiếp ▶';
   scrollTo({ top: 0, behavior: 'smooth' });
+  if (!silentHash) history.replaceState(null, '', '#' + sections[cur].dataset.slug);
 }
+let silentHash = false;
+// Liên kết thẳng: co-vua-khai-cuoc.html#meo, #bai-tap, #meo-bay ...
+function openHash() {
+  const h = decodeURIComponent(location.hash.slice(1));
+  const tipBtn = document.querySelector(`#tipTabs [data-slug="${h}"]`);
+  const idx = sections.findIndex(s => s.dataset.slug === (tipBtn ? 'meo' : h));
+  if (idx < 0) return false;
+  goStep(idx);
+  if (tipBtn) { pickTab($('tipTabs'), tipBtn); history.replaceState(null, '', '#' + h); }
+  return true;
+}
+addEventListener('hashchange', openHash);
+$('toMeo').onclick = e => { e.preventDefault(); goStep(sections.findIndex(s => s.dataset.slug === 'meo')); };
 $('prev').onclick = () => goStep(cur - 1);
 $('next').onclick = () => goStep(cur === sections.length - 1 ? 0 : cur + 1);
-goStep(0);
+if (!openHash()) { silentHash = true; goStep(0); silentHash = false; }
 window.__goStep = goStep; // dùng khi kiểm thử
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {});
 </script>
 </body>
 </html>
