@@ -1,12 +1,14 @@
 // Service worker: cho phép mở app khi mất mạng sau lần truy cập đầu tiên.
 // Đổi VERSION mỗi khi cập nhật bài học để máy học sinh tải bản mới.
-const VERSION = 'hoc-co-vua-v4';
+const VERSION = 'hoc-co-vua-v5';
 const CORE = [
   './',
   'index.html',
   'co-vua-khai-cuoc.html',
-  ...Array.from({ length: 15 }, (_, i) => `bai-${i + 2}.html`),
-  ...Array.from({ length: 15 }, (_, i) => `lessons/bai-${String(i + 2).padStart(2, '0')}.js`),
+  ...Array.from({ length: 18 }, (_, i) => `bai-${i + 2}.html`),
+  ...Array.from({ length: 18 }, (_, i) => `lessons/bai-${String(i + 2).padStart(2, '0')}.js`),
+  ...Array.from({ length: 8 }, (_, i) => `nhap-mon-${i + 1}.html`),
+  ...Array.from({ length: 8 }, (_, i) => `lessons/nm-0${i + 1}.js`),
   'assets/lesson.css', 'assets/lesson.js',
   'manifest.webmanifest',
   'icons/icon-192.png',

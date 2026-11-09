@@ -1,4 +1,4 @@
-// Bộ dựng bài học cờ vua dùng chung cho các Bài 2..16.
+// Bộ dựng bài học cờ vua dùng chung cho Nhập môn 1–8 và Bài 2..19.
 // Mỗi bài là một file dữ liệu trong lessons/ (xem lessons/README.md), trang HTML chỉ gọi runLesson(data).
 import { Chess } from 'https://cdn.jsdelivr.net/npm/chess.js@1.4.0/+esm';
 
@@ -332,11 +332,12 @@ const BLOCKS = { text: b => el('div', '', vnText(b.html)), replay: blockReplay, 
 
 /* ================= Dựng cả bài ================= */
 export function runLesson(data) {
-  document.title = `Bài ${data.no} · ${data.title}`;
+  const name = data.label || `Bài ${data.no}`;
+  document.title = `${name} · ${data.title}`;
   const body = document.body;
   body.innerHTML = '';
   body.appendChild(el('nav', 'topbar', `<a href="./">🏠 Trang chủ</a><a href="./#phan-${data.part}">📚 Danh sách bài</a>`));
-  body.appendChild(el('header', '', `<h1>${data.icon || '♞'} Bài ${data.no}: <span>${data.title}</span></h1>${data.sub ? `<p class="lesson-sub">${data.sub}</p>` : ''}`));
+  body.appendChild(el('header', '', `<h1>${data.icon || '♞'} ${name}: <span>${data.title}</span></h1>${data.sub ? `<p class="lesson-sub">${data.sub}</p>` : ''}`));
   const steps = el('div', 'steps'); body.appendChild(steps);
   const main = el('main'); body.appendChild(main);
   const pager = el('nav', 'pager');
