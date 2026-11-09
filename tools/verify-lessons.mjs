@@ -14,7 +14,7 @@ const tryMove = (g, m) => { try { return g.move(m); } catch { return null; } };
 const mateInOne = g => g.moves().find(m => { const t = new Chess(g.fen()); t.move(m); return t.isCheckmate(); });
 const sanOk = (m, want) => m && m.san === want; // so khớp cả dấu +/# để lời giảng đúng ký hiệu
 
-for (const f of readdirSync(root).filter(f => /^bai-\d+\.js$/.test(f)).sort()) {
+for (const f of readdirSync(root).filter(f => /^(bai|nm)-\d+\.js$/.test(f)).sort()) {
   const { default: L } = await import(pathToFileURL(join(root, f)));
   console.log(`\n${f} · Bài ${L.no}: ${L.title}`);
   for (const sec of L.sections) for (const [k, b] of sec.blocks.entries()) {
@@ -79,6 +79,7 @@ for (const f of readdirSync(root).filter(f => /^bai-\d+\.js$/.test(f)).sort()) {
       const t = new Chess(fen);
       for (const sq of b.verify?.zero || []) ck(`${id}: quân ${sq} không đi được`, t.get(sq) && t.moves({ square: sq }).length === 0);
       if (b.verify?.stalemate) ck(`${id}: thế cờ là hòa pat`, t.isStalemate());
+      for (const [sq, n] of Object.entries(b.verify?.count || {})) ck(`${id}: quân ${sq} đi được ${n} ô`, new Set(t.moves({ square: sq, verbose: true }).map(m => m.to)).size === n, String(new Set(t.moves({ square: sq, verbose: true }).map(m => m.to)).size));
     }
   }
 }

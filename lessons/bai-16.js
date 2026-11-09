@@ -3,6 +3,7 @@ export default {
   no: 16, part: 3, icon: '♔',
   title: 'Đối Vua',
   sub: 'Vua + Tốt đấu Vua: khi nào thắng, khi nào hòa',
+  nextLesson: 'bai-18.html',
   sections: [
     {
       slug: 'la-gi', title: '♔ Đối Vua là gì?', short: 'Là gì?',

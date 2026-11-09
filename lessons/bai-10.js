@@ -3,7 +3,7 @@ export default {
   no: 10, part: 2, icon: '🧱',
   title: 'Chiếu hết hàng cuối',
   sub: 'Vua bị chính tốt nhà chặn đường',
-  nextLesson: 'bai-11.html',
+  nextLesson: 'bai-17.html',
   sections: [
     {
       slug: 'la-gi', title: '🧱 Chiếu hết hàng cuối', short: 'Là gì?',
